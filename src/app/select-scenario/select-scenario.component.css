@@ -1,0 +1,19 @@
+.cust_style {
+    margin-top: 15%;
+    text-align: center;
+}
+
+.cust_info_btn {
+    text-align: center;
+    margin-right: 12px;
+    width: 20%;
+    height: 10%;
+    font-size: 100%;
+}
+
+.cust_warn_btn {
+    text-align: center;
+    width: 20%;
+    height: 10%;
+    font-size: 100%;
+}

@@ -1,0 +1,114 @@
+[
+  {
+    "questions": [
+      {
+        "answers": "15,98",
+        "question": "What is the total cost of BREMSCHUHE?",
+        "id": "1",
+        "img": "../assets/img/1.png"
+      },
+      {
+        "answers": "0,89",
+        "question": "How much is Weizen Sandwich?",
+        "id": "2",
+        "img": "../assets/img/2.png"
+      },
+      {
+        "answers": "1,65",
+        "question": "What is the cost of Rispentomaten?",
+        "id": "3",
+        "img": "../assets/img/3.png"
+      }
+    ]
+  },
+  {
+    "questions": [
+      {
+        "answers": "2,60",
+        "question": "What is the unit cost of Gläschen-Drivers ?",
+        "id": "4",
+        "img": "../assets/img/4.png"
+      },
+      {
+        "answers": "19,62",
+        "question": "What is the total cost of items on this Aldi list?",
+        "id": "5",
+        "img": "../assets/img/5.png"
+      },
+      {
+        "answers": "4,79",
+        "question": "How much does a single Latte cost?",
+        "id": "6",
+        "img": "../assets/img/6.png"
+      }
+    ]
+  },
+  {
+    "questions": [
+      {
+        "answers": "0,75",
+        "question": "How much money change was given back for the amount of 3 Euro?",
+        "id": "7",
+        "img": "../assets/img/7.png"
+      },
+      {
+        "answers": "7,95",
+        "question": "What is the cost  of Visiomax?",
+        "id": "8",
+        "img": "../assets/img/8.png"
+      },
+      {
+        "answers": "2,29",
+        "question": "How much does the TEEK.GRUENTEE cost?",
+        "id": "9",
+        "img": "../assets/img/9.png"
+      }
+    ]
+  },
+  {
+    "questions": [
+      {
+        "answers": "2825",
+        "question": "What are the last 4 digits of the card number used to pay for the PEGL B5 H-Jeans? ",
+        "id": "10",
+        "img": "../assets/img/10.png"
+      },
+      {
+        "answer": "9,28",
+        "answers": "5,62",
+        "question": "What is the total cost of items for this Starbucks coffee receipt?",
+        "id": "11",
+        "img": "../assets/img/11.png"
+      },
+      {
+        "answers": "14,99",
+        "question": "What is the price for the Grau Wäsche?",
+        "id": "12",
+        "img": "../assets/img/12.png"
+      }
+    ]
+  },
+  {
+    "questions": [
+      {
+        "answers": "20,02",
+        "question": "How much money change was given back for the amount of 50 Euro?",
+        "id": "13",
+        "img": "../assets/img/13.png"
+      },
+      {
+        "answers": "8,67",
+        "question": "What is the Netto cost for this Starbucks purchase?",
+        "id": "14",
+        "img": "../assets/img/14.png"
+      },
+      {
+        "answer": "2,49",
+        "answers": "5,67",
+        "question": "What is the cost of a Blaubeer Muffin?",
+        "id": "15",
+        "img": "../assets/img/15.png"
+      }
+    ]
+  }
+]

@@ -1,0 +1,95 @@
+[
+    { "questions":  [{
+         "answers": "The author mentions five driving forces: The desire to make a difference, community and socialising, freedom and independence, fairness and justice, and competition",
+         "question": "Which most common driving forces does the author mention?",
+         "id": "1"
+ 
+     },
+     {
+         "answers": "compete with yourself, get another competitive student into a study group.",
+         "question": "Which concrete advice does the author give for competitive people?",
+         "id": "2"
+ 
+     },
+     {
+         "answers": "wrong",
+         "question": "Few people never consider what truly motivates them. Is this statement right or wrong?",
+         "id": "3"
+     }]},
+     {"questions": [ {
+         "answers": "Covid-19",
+         "question": "What event has left many people contemplating their mortality?",
+         "id": "4"
+ 
+     },
+     {
+         "answers": "Purpose, belonging, achievement, love, connection.",
+         "question": "According to the author, what are the five key psychological needs?",
+         "id": "5"
+ 
+     },
+     {
+         "answers": "15%",
+         "question": "What percentage of students were stuck on campus as a result of travel regulations?",
+         "id": "6"
+ 
+     }]},
+     {"questions":   [{
+         "answers": "no",
+         "question": "Does the author mention purpose as one of the most common driving forces?",
+         "id": "7"
+ 
+     },
+     {
+        "answer": "wrong",
+         "answers": "right",
+         "question": "„85% of students attempted to work on campus with access to campus buildings during the lockdown. Is this statement right or wrong?“",
+         "id": "8"
+ 
+     },
+     {
+         "answers": "lockdown",
+         "question": "What was the main cause of disruptions of normal routines?",
+         "id": "9"
+ 
+     }]},
+     {"questions":[ {
+         "answers": "2",
+         "question": "How many tests does the author recommend to find out one’s dominant motivator? ",
+         "id": "10"
+ 
+     },
+     {
+         "answers": "That many contemplated their own mortality",
+         "question": "Which devastating effect of Covid 19 does the author mention?",
+         "id": "11"
+ 
+     },
+     {
+         "answers": "socialising and community",
+         "question": "If your desert island is your phone, what is your driving force according to the author?",
+         "id": "12"
+ 
+     }
+     ]},
+     {"questions":[ {
+         "answers": "wellbeing/happiness and motivation",
+         "question": "According to the author, what are the benefits if you understand what drives you?",
+         "id": "13"
+ 
+     },
+     {
+         "answer": "desert island and recent rage test",
+         "answers": "connection and purpose",
+         "question": "Which two tests does the author recommend for finding out your dominant motivator?",
+         "id": "14"
+ 
+     },
+     {
+         "answers": "Desire to make a difference, community and socializing, and competition.",
+         "question": "For which driving forces does the author give concrete study advice?",
+         "id": "15"
+ 
+     }
+     ]}
+ ]
