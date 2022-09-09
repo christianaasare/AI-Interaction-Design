@@ -5,103 +5,174 @@
       *ngFor="let item of userData; let i = index">
       <h1 style="margin-top: 30px;">Read the article and answer the questions below. Put your answers in the input box provided below each question.</h1>
       <h2>You may use your own words.</h2>
-      <form [formGroup]="firstFormGroup">
-        <div *ngFor="let items of item.questions; let index = index">
-          <ng-template matStepLabel> Provide response here</ng-template>
 
-          <h2 style="margin-top: 150px !important; color: blue;">{{items.id + '. '}}{{items.question}}</h2>
-          
-          <!-- ----custom--- -->
-          <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'">
-            <mat-label>Answer</mat-label>
-            <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
-              placeholder="Provide response here" [(ngModel)]="data[items.id]" required />
-          </mat-form-field>
-
-          <!-- ===========button=========== -->
-
-
-
-
-          <div *ngIf="inputsdata[i] == 'button'" class="d-flex">
-            <mat-form-field appearance="outline">
-              <mat-label>Provide response here</mat-label>
-              <input matInput value="{{ items.answers }}" [readonly]="true" [disabled]="true" />
-            </mat-form-field>
-
-
-            <div class="mt-4 ms-2 p-1">
-              <label class="custom-radio-button__container">
-                <input type="radio" name="radio{{items.id}}" value="true" (change)="onItemChange($event,items.id)"
-                  [checked]="data[items.id] ==undefined?true:  data[items.id] == 'true' ? true : data[items.id] == '' ? true : false" />
-                <span class="custom-radio-button designer">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
-                  </svg>
-                </span>
-              </label>
-              <label class="custom-radio-button__container">
-                <input type="radio" name="radio{{items.id}}" value="false" (change)="onItemChange($event,items.id)"
-                  [checked]="data[items.id] == 'false' ? true : false" />
-                <span class="custom-radio-button">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x"
-                    viewBox="0 0 16 16">
-                    <path
-                      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
-                  </svg>
-                </span>
-              </label>
-            </div>
-          </div>
-
-          <!-- ==========edit============ -->
-          <div class="d-flex">
-            <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'edit'">
-              <mat-label>Provide response here</mat-label>
-              <input matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]"
-                formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{ items.answers }}"
-                [readonly]="isReadonly[items.id]==undefined?true:isReadonly[items.id]"
-                [disabled]="isReadonly[items.id]==undefined?true:isReadonly[items.id]" />
-            </mat-form-field>
-            <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id)" class="fa fa-pencil float-end fs-3"
-              style="margin-top: 2%; margin-left: 1%; cursor: pointer !important" id="edit"></i>
-          </div>
-          <!-- =========placeholder========== -->
-
-          <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'placeholder'">
-            <mat-label>Provide response here</mat-label>
-            <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"
-              placeholder="{{'Recommended:' + items.answers }}" />
-          </mat-form-field>
-
-          <!-- ============subtext============= -->
-
-          <div *ngIf="inputsdata[i] == 'subtext'">
-            <mat-form-field appearance="outline">
-              <mat-label>Provide response here</mat-label>
+      <div >
+        <div > <form [formGroup]="firstFormGroup">
+          <h3>
+            <p>
+            Over the last two years, university students found themselves in strange and
+            precarious circumstances. Fifteen per cent were stuck on campus because travel
+              regulations prohibited them from returning home. The remaining 85% attempted to
+            work remotely without access to campus buildings or support from peers.
+            
+            The good news is that if you were able to self-motivate then, it’s a skill you can use for
+            the rest of your life. Lockdown disrupted our normal routines, and the devastating
+              impact of Covid-19 has left many of us contemplating our own mortality. That
+            inevitably has led to some searching questions about what life is all about.
+          </p>
+          <p>
+            This is actually a valuable use of our time: people who understand what drives them
+              are not only better placed to make choices which will serve their wellbeing and
+              happiness, they’re able to motivate themselves even if the task at hand is
+              unappealing, dull or repetitive (see: revision).
+            
+              Most people never deeply consider what motivates them. After all, society provides
+              compelling goals for us to aspire to from the moment we’re born — whether that’s
+              earning money above and beyond what we need to survive, buying stuff we don’t
+              need, making ourselves resemble society’s narrow beauty paradigms, or getting
+              followers on social media. But as any celebrity will tell you, achieving these goals
+              rarely results in genuine fulfilment.
+              Conversely, if our key psychological needs — purpose, belonging, achievement, love
+              and connection — are being met and whatever we have dedicated our life to honours
+              our driving force, we’re much more likely to feel content, energised and motivated.
+            </p>
+          <p>
+              The most common driving forces I encounter are a desire to make a difference,
+              community and socialising, freedom and independence, fairness and justice, and
+              competition. Most people are galvanised to an extent by all of the above, but they’ll
+              have a dominant motivator. If you’re having trouble working out which yours is, there
+              are two tests I’d recommend.
+            </p>
+            <p>
+             
+              First of all: what’s your desert island object and what does it represent to you? If, for
+              example, the answer is your phone, it could represent the ability to communicate with
+              others. Your driving force might be socialising and community.
+              Secondly: when was the last time you were incandescent with rage over something
+              that, in the general scheme of things, didn’t matter that much? For instance, if
+              someone pushed in front of you in a queue two weeks ago and you’re still having
+              imaginary conversations with them in your bathroom mirror, your key value might be
+              fairness. Once you’ve identified your driving force, it’s a case of making the task
+              you’re dreading match your motivation.
+              Let’s say you’re driven to make a difference. You could do a shout-out to see if anyone
+              on your course is struggling with an aspect of studying or a particular module, and
+              challenge yourself to explain it to them. You’re revising, but also helping others.
+            </p>
+          <p>
+              If socialising is your thing, three or four of you could pledge to go over the material
+              and present different parts of it to one another. If you can make it entertaining, all the
+              better.
+            
+              Competitive people are most enthused when in competition with themselves, so time
+              yourself doing a past paper and then see if you can beat your own record. If you can
+              get a competitive person into a social study group they’ll also likely ensure you all
+              remain on track.
+            
+              Now lockdown is over and we’re tasked with attempting to get back to “normal”, it’s
+              shrewd  to  remain aware of your driving force. After all, as a psychologist  once told
+              me: “Your key value is freedom. If you’re chained to the same desk for 12 hours a day
+              you’ll never be happy, no matter how many zeros are on the end of your salary.”
+            </p></h3>
+          <div *ngFor="let items of item.questions; let index = index">
+            <ng-template matStepLabel> Provide response here</ng-template>
+             <hr style="width: 100%" >
+             
+            <h2 style="margin-top: 50px !important; color: blue;">{{items.id + '. '}}{{items.question}}</h2>
+            
+            <!-- ----custom--- -->
+            <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'">
+              <mat-label>Answer</mat-label>
               <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
-                [(ngModel)]="data[items.id]" placeholder="Provide response here" (focusout)="onFocusEvent($event,items.id)"
-                required />
+                placeholder="Provide response here" [(ngModel)]="data[items.id]" required />
             </mat-form-field>
-            <div class="mb-2" *ngIf="isSubtextVisible[items.id]==true">
-              <span style="color: rgba(69, 131, 60, 0.782);" >{{'Recommended:  '+ items.answers }}</span>
+  
+            <!-- ===========button=========== -->
+            <div *ngIf="inputsdata[i] == 'button'" class="d-flex" >
+              <mat-form-field appearance="outline" style="width: 90%;" >
+                <mat-label>Provide response here</mat-label>
+                <input matInput value="{{ items.answers }}" [readonly]="true" style="color: black;"z/>
+              </mat-form-field>
+  
+  
+              <div class="mt-4 ms-2 p-1">
+                <label class="custom-radio-button__container">
+                  <input type="radio" name="radio{{items.id}}" value="true" (change)="onItemChange($event,items.id)"
+                    [checked]="data[items.id] ==undefined?true:  data[items.id] == 'true' ? true : data[items.id] == '' ? true : false" />
+                  <span class="custom-radio-button designer">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-check btn"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M10.97 4.97a.75.75 0 0 1 1.07 1.05l-3.99 4.99a.75.75 0 0 1-1.08.02L4.324 8.384a.75.75 0 1 1 1.06-1.06l2.094 2.093 3.473-4.425a.267.267 0 0 1 .02-.022z" />
+                    </svg>
+                  </span>
+                </label>
+                <label class="custom-radio-button__container">
+                  <input type="radio" name="radio{{items.id}}" value="false" (change)="onItemChange($event,items.id)"
+                    [checked]="data[items.id] == 'false' ? true : false" />
+                  <span class="custom-radio-button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-x btn"
+                      viewBox="0 0 16 16">
+                      <path
+                        d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+                    </svg>
+                  </span>
+                </label>
+              </div>
             </div>
+  
+            <!-- ==========edit============ -->
+            <div class="d-flex">
+              <mat-form-field  *ngIf="inputsdata[i] == 'edit'" class="inp" style="width: 90%; outline: 0 !important;" >
+                <!-- <mat-label>Provide response here</mat-label> -->
+                <input matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]"
+                  formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{ items.answers }}"
+                  [readonly]="isReadonly[items.id]==undefined?true:isReadonly[items.id]"
+                  [disabled]="isReadonly[items.id]==undefined?true:isReadonly[items.id]" style=" border:0;" />
+              </mat-form-field>
+              <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id)" class="fa fa-pencil float-end fs-3"
+                style="margin-top:2%; margin-left: 1%; cursor: pointer !important;  color: rgb(27, 87, 151);" id="edit"></i>
+            </div>
+            <!-- =========placeholder========== -->
+  
+            <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'placeholder'" style="width: 90%;">
+              <!-- <mat-label>Provide response here</mat-label> -->
+              <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"
+                placeholder="{{items.answers }}" />
+            </mat-form-field>
+  
+            <!-- ============subtext============= -->
+  
+            <div *ngIf="inputsdata[i] == 'subtext'">
+              <mat-form-field appearance="outline" style="width: 90%;">
+                <mat-label>Provide response here</mat-label>
+                <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
+                  [(ngModel)]="data[items.id]" placeholder="Provide response here" (focusout)="onFocusEvent($event,items.id)"
+                  required />
+              </mat-form-field>
+              <div class="mb-2" *ngIf="isSubtextVisible[items.id]==true">
+                <span style="color: rgba(69, 131, 60, 0.782);" >{{'Recommended:  '+ items.answers }}</span>
+              </div>
+            </div>
+  
           </div>
-
-        </div>
-        <div>
-          <button color="primary" mat-button matStepperNext *ngIf="i != userData.length - 1" (click)="next(item, i,inputsdata[i])">
-            Next
-          </button>
-
-          <button mat-button matStepperNext *ngIf="i == userData.length - 1"
-            (click)="submitableDataForScOne(item, i,inputsdata[i])">
-            Submit
-          </button>
-        </div>
-      </form>
+          <div>
+            <h3 style="color: red;">
+             ** Reminder to fill out questionnaire
+            </h3>
+            <button class="btn btn-info cust_info_btn" mat-button matStepperNext *ngIf="i != userData.length - 1" (click)="next(item, i,inputsdata[i])">
+              Next
+            </button>
+  
+            <button class="btn btn-info cust_info_btn" mat-button matStepperNext *ngIf="i == userData.length - 1"
+              (click)="submitableDataForScOne(item, i,inputsdata[i])">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>
+      
+      </div>
+     
     </mat-step>
   </div>
 
@@ -115,7 +186,7 @@
       <form [formGroup]="firstFormGroup">
         <div *ngFor="let items of item.questions; let index = index">
           <ng-template matStepLabel> Provide response here</ng-template>
-
+          <hr style="width: 800px" >
           <h1 style="color: red; margin-top: 50px;">{{'Image ' + items.id}}</h1>          
 
 
@@ -123,12 +194,8 @@
             <div class="imgPlaceHolder" style="width: 500px; height: 500px;">
               <img [src]="items.img" height="100px" width="100px" />
             </div>
-
           <h2 style="margin-top: 50px !important; color: blue;">{{items.question}}</h2>
-
-
           <!-- ==============text============ -->
-
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'" style="width: 200px;" >
             <mat-label>Provide response here</mat-label>
             <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
@@ -140,7 +207,7 @@
           <div *ngIf="inputsdata[i] == 'button'" class="d-flex">
             <mat-form-field appearance="outline" style="width: 200px;">
               <mat-label>{{ items.answers }}</mat-label>
-              <input matInput value="{{ items.answers }}" [readonly]="true" [disabled]="true" />
+              <input matInput value="{{ items.answers }}" [readonly]="true"  />
             </mat-form-field>
             <div class="mt-4 ms-2 p-1">
               <label class="custom-radio-button__container">
@@ -171,21 +238,21 @@
           <!-- ==========edit============ -->
           <div class="d-flex">
             <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'edit'" style="width: 200px;">
-              <mat-label>Provide response here</mat-label>
+              <!-- <mat-label>Provide response here</mat-label> -->
               <input matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]"
-                formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{ 'Recommended' + items.answers }}"
+                formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{items.answers }}"
                 [readonly]="isReadonly[items.id]==undefined?true:isReadonly[items.id]"
                 [disabled]="isReadonly[items.id]==undefined?true:isReadonly[items.id]" />
             </mat-form-field>
             <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id)" class="fa fa-pencil float-end fs-3"
-              style="margin-top: 2%; margin-left: 1%; cursor: pointer !important" id="edit"></i>
+              style="margin-top: 2%; margin-left: 1%; cursor: pointer !important; color: rgb(27, 87, 151);" id="edit" ></i>
           </div>
           <!-- =========placeholder========== -->
 
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'placeholder'" style="width: 100px;">
-            <mat-label>Provide response here </mat-label>
+            <!-- <mat-label>Provide response here </mat-label> -->
             <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"
-              placeholder="{{'Recommended: ' + items.answers }}" />
+              placeholder="{{ items.answers }}" />
           </mat-form-field>
 
           <!-- ============subtext============= -->
@@ -204,10 +271,13 @@
 
         </div>
         <div>
-          <button  mat-button matStepperNext *ngIf="i != userData.length - 1" (click)="next(item, i,inputsdata[i])">
+          <h3 style="color: red;">
+            ** Reminder to fill out questionnaire
+           </h3>
+          <button class="btn btn-info cust_info_btn" mat-button matStepperNext *ngIf="i != userData.length - 1" (click)="next(item, i,inputsdata[i])">
             Next
           </button>
-          <button mat-button matStepperNext *ngIf="i == userData.length - 1"
+          <button  class="btn btn-info cust_info_btn" mat-button matStepperNext *ngIf="i == userData.length - 1"
             (click)="submitableDataForScOne(item, i,inputsdata[i])">
             Submit
           </button>

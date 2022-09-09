@@ -17,7 +17,7 @@
 }
 .mat-form-field {
     margin-top: 16px;
-    width: 1500px;
+    width: 500px;
 
 }
 
@@ -105,12 +105,12 @@
 }
 
 .custom-radio-button__container input[type="radio"]:checked+.custom-radio-button {
-    border: 2px solid #e94174;
+    border: 4px solid rgb(4, 47, 188);
     box-shadow: 0px 0px 16px -6px rgba(0, 0, 0, .5);
 }
 
 .custom-radio-button__container input[type="radio"]:checked+.custom-radio-button h3 {
-    color: #e94174;
+    color: #a6a6a6;
 }
 
 .custom-radio-button__container input[type="radio"]:checked+.custom-radio-button .svg-designer {
@@ -124,3 +124,28 @@
   width: 500px;
   height: 500px;
 }
+
+hr {
+    border: 0;
+    border-top: 2px solid rgb(82, 82, 82);
+  }
+
+
+::ng-deep .inp .mat-form-field-appearance-outline.mat-form-field-disabled, ::ng-deep  .inp .mat-form-field-outline{
+    opacity: 0;
+    pointer-events: none !important;
+    }
+
+  
+    /* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end,
+    ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
+        border-width: 1px !important;
+        color: #e0e0e0;
+    } */
+
+
+
+
+      ::ng-deep .inp .mat-form-field-underline {
+        display: none;
+    }

@@ -49,19 +49,17 @@ export class UserquestionComponent implements OnInit {
 
   ngOnInit() {
     this.selectedScenario = this.activatedRoute.snapshot.params;
-    // alert(JSON.stringify(this.selectedScenario['selectedScenario']));
-
-    // if (this.selectedScenario['selectedScenario'] == '1') {
-    //   this.bindData(this.userData[0].questions[0].id);
-    // } else {
-    //   this.bindData(this.userDataScTwo[0].questions[0].id);
-    // }
-    // console.dir(this.inputsdata)
-    // console.log(this.userData.length);
-    // console.log(this.userData.length-1)
   }
+
+  shuffle(array:any) {
+    array.sort(() => Math.random() - 0.5);
+  }
+  
   ngAfterContentInit() {
     var data = this.getData();
+    this.data.questions = this.shuffle(data)
+    console.log(data)
+    
 
     if (this.selectedScenario['selectedScenario'] == '1') {
       data.forEach((element) => {
@@ -78,7 +76,6 @@ export class UserquestionComponent implements OnInit {
   onItemChange($event: any, id: string) {
 
     this.data[id] = $event.target.value;
-    // console.log(this.data);
   }
 
   edit(id: string) {
@@ -126,15 +123,7 @@ export class UserquestionComponent implements OnInit {
   // ==== first=====
 
   next(item: any, index: number, inputtype: string) {
-    // if (this.inputsdata[index] == 'edit') {
-    //   this.data = this.editInput
-    // }
 
-    // alert(JSON.stringify(this.data));
-
-    // for (let i = 0; i < 3; i++) {
-    //   this.nextSubmit(item[i], i, this.data[item['id']]);
-    // }
     try {
       item.questions.forEach((element: any, ind: number) => {
 
@@ -334,51 +323,6 @@ export class UserquestionComponent implements OnInit {
     this.excelService.exportAsExcelFile(data, 'sample');
   }
 
-  // zoom
-
-  // onClick(e: { clientY: any; clientX: any; }) {
-  //   console.log(e.clientY, e.clientX);
-  //   this.isZoomed = !this.isZoomed;
-  //   if (this.isZoomed) {
-  //     this.container.nativeElement.style.overflow = 'hidden';
-  //     this.img.nativeElement.style.width = '200%';
-  //     this.img.nativeElement.style.height = '200%';
-  //     this.img.nativeElement.style.cursor = 'zoom-out';
-  //     this.img.nativeElement.style.cursor = 'zoom-out';
-  //     this.img.nativeElement.style.left = `-${e.clientX}`;
-  //     this.img.nativeElement.style.top = `-${e.clientY}`;
-  //   } else {
-  //     this.container.nativeElement.style.overflow = 'hidden';
-  //     this.img.nativeElement.style.width = '100%';
-  //     this.img.nativeElement.style.cursor = 'zoom-in';
-  //   }
-  // }
-  // onMouseDown(e: { clientX: any; clientY: any; }) {
-  //   this.pos = {
-  //     // The current scroll
-  //     left: this.container.nativeElement.scrollLeft,
-  //     top: this.container.nativeElement.scrollTop,
-  //     // Get the current mouse position
-  //     x: e.clientX,
-  //     y: e.clientY,
-  //   };
-  // }
-
-  // mouseMoveHandler(e: { clientX: number; clientY: number; }) {
-  //   // How far the mouse has been moved
-  //   const dx = (e.clientX - this.pos.x) * 2;
-  //   const dy = (e.clientY - this.pos.y) * 3;
-
-  //   // Scroll the element
-  //   this.container.nativeElement.scrollTop = this.pos.top - dy;
-  //   this.container.nativeElement.scrollLeft = this.pos.left - dx;
-  // }
-
-  // onLeave() {
-  //   this.container.nativeElement.style.overflow = 'hidden';
-  //   this.img.nativeElement.style.transform = 'scale(1)';
-  //   this.img.nativeElement.style.cursor = 'zoom-in';
-  // }
 }
 
 interface IUser {
