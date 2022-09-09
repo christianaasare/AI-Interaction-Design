@@ -237,7 +237,7 @@
 
           <!-- ==========edit============ -->
           <div class="d-flex">
-            <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'edit'" style="width: 200px;">
+            <mat-form-field  *ngIf="inputsdata[i] == 'edit'"class="inp"  style="width: 200px;  outline: 0 !important;">
               <!-- <mat-label>Provide response here</mat-label> -->
               <input matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]"
                 formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{items.answers }}"
