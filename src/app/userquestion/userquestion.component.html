@@ -185,7 +185,7 @@
 
       <form [formGroup]="firstFormGroup">
         <div *ngFor="let items of item.questions; let index = index">
-          <ng-template matStepLabel> Provide response here</ng-template>
+          <ng-template matStepLabel> Answer here</ng-template>
           <hr style="width: 800px" >
           <h1 style="color: red; margin-top: 50px;">{{'Image ' + items.id}}</h1>          
 
@@ -197,7 +197,7 @@
           <h2 style="margin-top: 50px !important; color: blue;">{{items.question}}</h2>
           <!-- ==============text============ -->
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'" style="width: 200px;" >
-            <mat-label>Provide response here</mat-label>
+            <mat-label>Answer here</mat-label>
             <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
               placeholder="Provide response here" [(ngModel)]="data[items.id]" required />
           </mat-form-field>
