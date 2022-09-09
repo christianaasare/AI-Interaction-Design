@@ -194,7 +194,8 @@
             <div class="imgPlaceHolder" style="width: 500px; height: 500px;">
               <img [src]="items.img" height="100px" width="100px" />
             </div>
-          <h2 style="margin-top: 50px !important; color: blue;">{{items.question}}</h2>
+          <h2 style="margin-top: 50px !important; color: blue;">{{items.id + '. '}}{{items.question}}</h2>
+
           <!-- ==============text============ -->
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'" style="width: 200px;" >
             <mat-label>Answer here</mat-label>
