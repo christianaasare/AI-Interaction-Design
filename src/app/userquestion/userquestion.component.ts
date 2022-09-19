@@ -20,6 +20,8 @@ export class UserquestionComponent implements OnInit {
   inputs = ['text', 'button', 'edit', 'subtext', 'placeholder'];
   firstFormGroup: FormGroup;
   isEditable = true;
+  vard:any={};
+  // vardd: any ={};
   isReadonly: any = {};
   // usersData: IUser[] = Data;
   userData: IUser2[] = Data;
@@ -33,6 +35,7 @@ export class UserquestionComponent implements OnInit {
   // zoom
 
   isZoomed = false;
+  modelOption={standalone: true}
   pos = { top: 0, left: 0, x: 0, y: 0 };
   constructor(
     private fb: FormBuilder,
@@ -41,25 +44,36 @@ export class UserquestionComponent implements OnInit {
   ) {
     this.firstFormGroup = this.fb.group({
       // firstCtrl: ['', Validators.required],
-      firstCtrl0: ['', Validators.required],
-      firstCtrl1: ['', Validators.required],
-      firstCtrl2: ['', Validators.required],
+      firstCtrl0: ['', Validators.nullValidator],
+      firstCtrl1: ['', Validators.nullValidator],
+      firstCtrl2: ['', Validators.nullValidator],
+
     });
   }
 
   ngOnInit() {
     this.selectedScenario = this.activatedRoute.snapshot.params;
+
+    this.shuffleInputs();
+    // alert(JSON.stringify(this.selectedScenario['selectedScenario']));
+
+    // if (this.selectedScenario['selectedScenario'] == '1') {
+    //   this.bindData(this.userData[0].questions[0].id);
+    // } else {
+    //   this.bindData(this.userDataScTwo[0].questions[0].id);
+    // }
+    // console.dir(this.inputsdata)
+    // console.log(this.userData.length);
+    // console.log(this.userData.length-1)
   }
 
-  shuffle(array:any) {
-    array.sort(() => Math.random() - 0.5);
+  chnageButtonInput(newValue:any,item:any){
+    // alert(item.answers)
+    // alert(newValue)
+
   }
-  
   ngAfterContentInit() {
     var data = this.getData();
-    this.data.questions = this.shuffle(data)
-    console.log(data)
-    
 
     if (this.selectedScenario['selectedScenario'] == '1') {
       data.forEach((element) => {
@@ -70,16 +84,109 @@ export class UserquestionComponent implements OnInit {
         this.bindData(element['id']);
       });
     }
+
     this.dummyInput = 'hello';
   }
+  shuffle<T>(array: T[]): T[] {
+    let currentIndex = array.length,
+      randomIndex;
 
-  onItemChange($event: any, id: string) {
+    // While there remain elements to shuffle.
+    while (currentIndex != 0) {
+      // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
 
-    this.data[id] = $event.target.value;
+      // And swap it with the current element.
+      [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex],
+        array[currentIndex],
+      ];
+    }
+
+    return array;
   }
 
-  edit(id: string) {
+  shuffleInputs() {
+    if (this.selectedScenario['selectedScenario'] == '1') {
+      let sc1Data: IUser2[] = this.userData;
+      var tempList: any[] = [];
+      sc1Data.forEach((element: IUser2) => {
+        element.questions.forEach((data: IUser) => {
+
+          tempList.push(data);
+        });
+      });
+
+      console.log('sc1Data :');
+
+      var splicedArray: IUser2[] = this.splitToChunks(
+        this.shuffle(tempList),
+        5
+      );
+      this.userData = splicedArray;
+
+      console.dir(this.userData);
+    }
+    else{
+      let sc2Data: IData2[] = this.userDataScTwo;
+      var tempList: any[] = [];
+      sc2Data.forEach((element: IData2) => {
+        element.questions.forEach((data: IDataSc2) => {
+          tempList.push(data);
+        });
+      });
+
+      console.log('sc1Data :');
+
+      var splicedArray1: IData2[] = this.splitToChunks(
+        this.shuffle(tempList),
+        5
+      );
+      this.userDataScTwo = splicedArray1;
+
+      console.dir(this.userDataScTwo);
+    }
+  }
+
+  splitToChunks(array: any, parts: any) {
+    let result = [];
+    for (let i = parts; i > 0; i--) {
+
+      result.push({questions:array.splice(0, Math.ceil(array.length / i))});
+    }
+    return result;
+  }
+
+  onItemChange($event: any, id: string,items:any) {
+    this.data[id] = $event.target.value;
+    if($event.target.value==false)
+    {
+      //  items.answers=
+    }
+    // console.log(this.data);
+  }
+
+  edit(id: string,item:any) {
+
     this.isReadonly[id] = false;
+    // data[items.id]
+    if(this.data[id]==''||this.data[id]==undefined)
+    {
+      this.data[id]=item.answers
+    }
+    // else{
+    //   console.dir(this.data[id])
+    // }
+
+  }
+  onFocusPlaceholder(item:any){
+    console.log("its works")
+
+    if(this.data[item.id]==''||this.data[item.id]==undefined)
+    {
+      this.data[item.id]=item.answers
+    }
   }
 
   balancedLatinSquare(array: any[], participantId: number) {
@@ -123,10 +230,18 @@ export class UserquestionComponent implements OnInit {
   // ==== first=====
 
   next(item: any, index: number, inputtype: string) {
+    // if (this.inputsdata[index] == 'edit') {
+    //   this.data = this.editInput
+    // }
+
+    // alert(JSON.stringify(this.data));
+
+    // for (let i = 0; i < 3; i++) {
+    //   this.nextSubmit(item[i], i, this.data[item['id']]);
+    // }
 
     try {
       item.questions.forEach((element: any, ind: number) => {
-
         this.nextSubmit(element, index, this.data[element['id']], inputtype);
       });
     } catch (e) {
@@ -139,13 +254,15 @@ export class UserquestionComponent implements OnInit {
     try {
 
       item['userAnswer'] = data;
+      if(inputtype=='button')
+      {
+        item["answers"]=this.vard[item.id]==''?item["answers"]:this.vard[item.id]==undefined?item["answers"]:this.vard[item.id]
+      }
+
       if (inputtype == 'button' && data == '') {
         item['userAnswer'] = 'true';
         data = 'true';
       }
-      // item.questions[0]['userAnswer'] = data;
-      // item.questions[1]['userAnswer'] = this.data1;
-      // item.questions[2]['userAnswer'] = this.data2;
 
       var databaseData = this.getData();
       var recFound = databaseData.find((x) => x['id'] == item['id']);
@@ -163,6 +280,7 @@ export class UserquestionComponent implements OnInit {
       } else {
         databaseData.push(item);
       }
+
       if (this.selectedScenario['selectedScenario'] == '1') {
         localStorage.setItem('databaseForScOne', JSON.stringify(databaseData)!);
       } else {
@@ -171,11 +289,6 @@ export class UserquestionComponent implements OnInit {
       this.saveGenerateParticipantId();
       if (this.selectedScenario['selectedScenario'] == '1') {
         if (index != this.userData.length - 1) {
-
-          // this.bindData(this.userData[index+1].questions[0].id);
-          // this.bindData(this.userData[index+1].questions[1].id);
-          // this.bindData(this.userData[index+1].questions[2].id);
-
           this.userData[index + 1].questions.forEach((element) => {
             this.bindData(element.id);
           });
@@ -203,16 +316,18 @@ export class UserquestionComponent implements OnInit {
   }
 
   bindData(id: any) {
+
     var databaseData = this.getData();
     if (databaseData.length != 0) {
       var databaseRec = databaseData.find((el) => el['id'] == id);
       if (databaseRec == undefined || databaseRec == '') {
         this.data[id] = '';
       } else {
-        this.data[id] = databaseRec['userAnswer'];
+        this.data[id] = databaseRec['userAnswer']==undefined?'':databaseRec['userAnswer'];
       }
-      // console.dir(databaseRec);
-      // this.data = databaseRec["userAnswer"]
+    }
+    if(this.data[id] ==undefined){
+      this.data[id]=''
     }
   }
 
@@ -284,13 +399,10 @@ export class UserquestionComponent implements OnInit {
     var inputtypeIndex = 0;
     console.dir('decoded data :' + decodedData.length);
     decodedData.forEach((element: any, index: number) => {
-
-
       element['partId'] = partId;
 
       // element['input'] = JSON.parse(seq!)[index]?.toString();
       if (index % 3 == 0) {
-
         if (index != 0) {
           inputtypeIndex = inputtypeIndex + 1;
         }
@@ -309,7 +421,7 @@ export class UserquestionComponent implements OnInit {
       console.dir('seq : ' + JSON.parse(seq!));
     });
     console.dir(decodedData);
-     this.exportAsXLSX(decodedData);
+    this.exportAsXLSX(decodedData);
     // var obj=
   }
 
@@ -323,6 +435,51 @@ export class UserquestionComponent implements OnInit {
     this.excelService.exportAsExcelFile(data, 'sample');
   }
 
+  // zoom
+
+  // onClick(e: { clientY: any; clientX: any; }) {
+  //   console.log(e.clientY, e.clientX);
+  //   this.isZoomed = !this.isZoomed;
+  //   if (this.isZoomed) {
+  //     this.container.nativeElement.style.overflow = 'hidden';
+  //     this.img.nativeElement.style.width = '200%';
+  //     this.img.nativeElement.style.height = '200%';
+  //     this.img.nativeElement.style.cursor = 'zoom-out';
+  //     this.img.nativeElement.style.cursor = 'zoom-out';
+  //     this.img.nativeElement.style.left = `-${e.clientX}`;
+  //     this.img.nativeElement.style.top = `-${e.clientY}`;
+  //   } else {
+  //     this.container.nativeElement.style.overflow = 'hidden';
+  //     this.img.nativeElement.style.width = '100%';
+  //     this.img.nativeElement.style.cursor = 'zoom-in';
+  //   }
+  // }
+  // onMouseDown(e: { clientX: any; clientY: any; }) {
+  //   this.pos = {
+  //     // The current scroll
+  //     left: this.container.nativeElement.scrollLeft,
+  //     top: this.container.nativeElement.scrollTop,
+  //     // Get the current mouse position
+  //     x: e.clientX,
+  //     y: e.clientY,
+  //   };
+  // }
+
+  // mouseMoveHandler(e: { clientX: number; clientY: number; }) {
+  //   // How far the mouse has been moved
+  //   const dx = (e.clientX - this.pos.x) * 2;
+  //   const dy = (e.clientY - this.pos.y) * 3;
+
+  //   // Scroll the element
+  //   this.container.nativeElement.scrollTop = this.pos.top - dy;
+  //   this.container.nativeElement.scrollLeft = this.pos.left - dx;
+  // }
+
+  // onLeave() {
+  //   this.container.nativeElement.style.overflow = 'hidden';
+  //   this.img.nativeElement.style.transform = 'scale(1)';
+  //   this.img.nativeElement.style.cursor = 'zoom-in';
+  // }
 }
 
 interface IUser {

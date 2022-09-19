@@ -131,21 +131,20 @@ hr {
   }
 
 
-::ng-deep .inp .mat-form-field-appearance-outline.mat-form-field-disabled, ::ng-deep  .inp .mat-form-field-outline{
-    opacity: 0;
+/* ::ng-deep .inp .mat-form-field-appearance-outline.mat-form-field-disabled, ::ng-deep  .inp .mat-form-field-outline {
+    opacity: 1;
     pointer-events: none !important;
-    }
+    display: none;
+    } */
 
   
     /* ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-end,
     ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-start {
         border-width: 1px !important;
         color: #e0e0e0;
-    } */
+    }  */
 
 
-
-
-      ::ng-deep .inp .mat-form-field-underline {
+    /* ::ng-deep .inp .mat-form-field-underline {
         display: none;
-    }
+    } */
