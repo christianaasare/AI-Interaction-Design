@@ -81,15 +81,13 @@
             
             <!-- ----custom--- -->
             <mat-form-field  *ngIf="inputsdata[i] == 'text'" style="width: 95%;" appearance="outline">
-              <mat-label>Answer</mat-label>
               <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
                 placeholder="Provide response here" [(ngModel)]="data[items.id]"  />
             </mat-form-field>
   <!-- button -->
   <div *ngIf="inputsdata[i] == 'button'" class="d-flex ">
-    <mat-form-field appearance="outline" style="width: 90%;">
-      <mat-label>{{ items.answers }}</mat-label>
-      <input style="color: black;" [(ngModel)]="vard[items.id]" (ngModelChange)="chnageButtonInput($event,items)" [ngModelOptions]="{standalone: true}" matInput value="{{ items.answers }}" [readonly]="data[items.id] == 'false' ? false : true" [disabled]="data[items.id] == 'false' ?  false : true" />
+    <mat-form-field appearance="outline" style="width: 90%;" >
+      <input style="color: black;" placeholder={{items.answers}} [(ngModel)]="vard[items.id]" (ngModelChange)="chnageButtonInput($event,items)" [ngModelOptions]="{standalone: true}" matInput value="{{ items.answers }}" [readonly]="data[items.id] == 'false' ? false : true" [disabled]="data[items.id] == 'false' ?  false : true" />
     </mat-form-field>
 
 
@@ -123,12 +121,11 @@
             <!-- ==========edit============ -->
             <div class="d-flex">
               <!-- <mat-form-field  *ngIf="inputsdata[i] == 'edit'" class="inp" style="width: 95%; outline: 0 !important;" > -->
-
-              <mat-form-field *ngIf="inputsdata[i] == 'edit' " style="width: 95%;" class="inp"  >
+              <mat-form-field [ngClass]="!editmode[items.id] ? 'no-outline' : '' " appearance="outline" *ngIf="inputsdata[i] == 'edit' " style="width: 95%;" class="inp"  >
                   <input  matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]" formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{ items.answers }}" [readonly]="isReadonly[items.id]==undefined?true:isReadonly[items.id]" [disabled]="isReadonly[items.id]==undefined?true:isReadonly[items.id]"
                             />
               </mat-form-field>
-              <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id,items)" class="fa fa-pencil float-end fs-3" 
+              <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id,items,i)" class="fa fa-pencil float-end fs-3" 
                 style="margin-top:2%; margin-left: 1%; cursor: pointer !important;  color: rgb(27, 87, 151);" id="edit"></i>
             </div>
             <!-- =========placeholder========== -->
@@ -145,12 +142,11 @@
   
             <div *ngIf="inputsdata[i] == 'subtext'">
               <mat-form-field class="inp" style="width: 95%;" appearance="outline">
-                <mat-label>Provide response here</mat-label>
                 <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
-                  [(ngModel)]="data[items.id]" placeholder="Provide response here" (focusout)="onFocusEvent($event,items.id)"
+                  [(ngModel)]="data[items.id]" placeholder="Provide response here" (change)="onValueChange($event,items.id)"
                    />
               </mat-form-field>
-              <div class="mb-2" *ngIf="isSubtextVisible[items.id]==true">
+              <div class="mb-2" *ngIf="isSubtextVisible[items.id] ">
                 <span style="color: rgba(15, 23, 181, 0.782);" >{{'Recommended:  '+ items.answers }}</span>
               </div>
             </div>
@@ -199,7 +195,6 @@
 
           <!-- ==============text============ -->
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'text'" style="width: 200px;" >
-            <mat-label>Answer here</mat-label>
             <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
               placeholder="Provide response here" [(ngModel)]="data[items.id]"  />
           </mat-form-field>
@@ -209,8 +204,7 @@
 
           <div *ngIf="inputsdata[i] == 'button'" class="d-flex">
             <mat-form-field appearance="outline" style="width: 200px;" >
-              <mat-label style="color: black">{{ items.answers }}</mat-label>
-              <input style="color: black" [(ngModel)]="vard[items.id]" (ngModelChange)="chnageButtonInput($event,items)" [ngModelOptions]="{standalone: true}" matInput value="{{ items.answers }}" [readonly]="data[items.id] == 'false' ? false : true" [disabled]="data[items.id] == 'false' ?  false : true" />
+              <input  placeholder={{items.answers}} [(ngModel)]="vard[items.id]" (ngModelChange)="chnageButtonInput($event,items)" [ngModelOptions]="{standalone: true}" matInput value="{{ items.answers }}" [readonly]="data[items.id] == 'false' ? false : true" [disabled]="data[items.id] == 'false' ?  false : true" />
             </mat-form-field>
             <div class="mt-4 ms-2 p-1">
               <label class="custom-radio-button__container">
@@ -240,13 +234,12 @@
 
           <!-- ==========edit============ -->
           <div class="d-flex">
-            <mat-form-field  *ngIf="inputsdata[i] == 'edit'"class="inp"  style="width: 200px;  outline: 0 !important;">
-              <!-- <mat-label>Provide response here</mat-label> -->
+            <mat-form-field [ngClass]="!editmode[items.id] ? 'no-outline' : '' " appearance="outline" *ngIf="inputsdata[i] == 'edit'"class="inp"  style="width: 200px; ">
               <input matInput value="{{ items.answers }}" [(ngModel)]="data[items.id]" formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" placeholder="{{ items.answers }}" [readonly]="isReadonly[items.id]==undefined?true:isReadonly[items.id]" [disabled]="isReadonly[items.id]==undefined?true:isReadonly[items.id]"
               />
             </mat-form-field>
-            <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id, items)" class="fa fa-pencil float-end fs-3"
-              style="margin-top: 2%; margin-left: 1%; cursor: pointer !important; color: rgb(27, 87, 151);" id="edit" ></i>
+            <i *ngIf="inputsdata[i] == 'edit'" (click)="edit(items.id, items, i)" class="fa fa-pencil float-end fs-3"
+              style="margin-top: 1%; margin-left: 1%; cursor: pointer !important; color: rgb(27, 87, 151);" id="edit" ></i>
           </div>
           <!-- =========placeholder========== -->
 
@@ -262,12 +255,11 @@
 
           <div *ngIf="inputsdata[i] == 'subtext'">
             <mat-form-field appearance="outline"  style="width: 200px;">
-              <mat-label>Answer</mat-label>
               <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}"
-                [(ngModel)]="data[items.id]" placeholder="Provide response here" (focusout)="onFocusEvent($event,items.id)"
+                [(ngModel)]="data[items.id]" placeholder="Provide response here" (change)="onValueChange($event,items.id)"
                  />
             </mat-form-field>
-            <div class="mb-2" *ngIf="isSubtextVisible[items.id]==true">
+            <div class="mb-2" *ngIf="isSubtextVisible[items.id] ">
               <span style="color: rgba(15, 23, 181, 0.782);" >{{'Recommended:  '+ items.answers }}</span>
             </div>
           </div>

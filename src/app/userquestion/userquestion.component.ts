@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./userquestion.component.css'],
 })
 export class UserquestionComponent implements OnInit {
+  editmode: any ={};
   editInput: any;
   selectedScenario!: any;
   data: any = {};
@@ -167,7 +168,7 @@ export class UserquestionComponent implements OnInit {
     // console.log(this.data);
   }
 
-  edit(id: string,item:any) {
+  edit(id: string,item:any,i:number) {
 
     this.isReadonly[id] = false;
     // data[items.id]
@@ -175,9 +176,14 @@ export class UserquestionComponent implements OnInit {
     {
       this.data[id]=item.answers
     }
+    console.log('itemmmmmm',item)
+
     // else{
     //   console.dir(this.data[id])
     // }
+    const resa = this.editmode[item.id]== false || typeof this.editmode[item.id] == "undefined" ? true :false;
+    this.editmode={...this.editmode, [item.id]:resa}    
+    console.log('hkhilhihjoiph',this.editmode)
 
   }
   onFocusPlaceholder(item:any){
@@ -427,8 +433,8 @@ export class UserquestionComponent implements OnInit {
 
   isSubtextVisible: any = {};
 
-  onFocusEvent(event: any, id: string) {
-    this.isSubtextVisible[id] = true;
+  onValueChange(event: any, id: string) {
+    this.isSubtextVisible[id] = event.target.value;
   }
 
   exportAsXLSX(data: any): void {
