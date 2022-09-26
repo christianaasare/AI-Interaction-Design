@@ -93,7 +93,6 @@
 
     <div class="mt-4 ms-2 p-1">
       <label class="custom-radio-button__container">
-        <!-- <input type="text" formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" /> -->
         <input type="radio" name="radio{{items.id}}" value="true" (change)="onItemChange($event,items.id,items)"
           [checked]="data[items.id] ==undefined?true:  data[items.id] == 'true' ? true : data[items.id] == '' ? true : false" />
         <span class="custom-radio-button designer">
@@ -131,9 +130,6 @@
             <!-- =========placeholder========== -->
   
             <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'placeholder'" style="width: 95%;">
-              <!-- <mat-label>Provide response here</mat-label> -->
-              <!-- <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"
-                placeholder="{{items.answers }}" /> -->
                 <input matInput formControlName="firstCtrl{{index}}" (focus)="onFocusPlaceholder(items)" (focusout)="onFocusPlaceholder(items)" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"  placeholder="{{ items.answers }}" />
 
             </mat-form-field>
@@ -244,9 +240,6 @@
           <!-- =========placeholder========== -->
 
           <mat-form-field appearance="outline" *ngIf="inputsdata[i] == 'placeholder'" style="width: 200px;">
-            <!-- <mat-label>Provide response here </mat-label> -->
-            <!-- <input matInput formControlName="firstCtrl{{index}}" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"
-              placeholder="{{ items.answers }}" /> -->
               <input matInput formControlName="firstCtrl{{index}}" (focus)="onFocusPlaceholder(items)" (focusout)="onFocusPlaceholder(items)" name="firstCtrl{{index}}" [(ngModel)]="data[items.id]"  placeholder="{{ items.answers }}" />
 
           </mat-form-field>

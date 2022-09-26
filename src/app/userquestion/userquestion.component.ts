@@ -16,24 +16,18 @@ export class UserquestionComponent implements OnInit {
   editInput: any;
   selectedScenario!: any;
   data: any = {};
-  // data1 = '';s
-  // data2 = '';
-  inputs = ['text', 'button', 'edit', 'subtext', 'placeholder'];
+  inputs = ['edit',	'button',	'placeholder'	,'text',	'subtext'];
   firstFormGroup: FormGroup;
   isEditable = true;
   vard:any={};
-  // vardd: any ={};
   isReadonly: any = {};
-  // usersData: IUser[] = Data;
   userData: IUser2[] = Data;
-  // userDataScTwo: IDataSc2[] = Data2;
   userDataScTwo: IData2[] = Data2;
   resArray: any[] = [];
   inputsdata = this.getOrSetInputSequance();
   dummyInput: string = 'hello';
   @ViewChild('container') 'container': ElementRef;
   @ViewChild('img') 'img': ElementRef;
-  // zoom
 
   isZoomed = false;
   modelOption={standalone: true}
@@ -44,7 +38,6 @@ export class UserquestionComponent implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.firstFormGroup = this.fb.group({
-      // firstCtrl: ['', Validators.required],
       firstCtrl0: ['', Validators.nullValidator],
       firstCtrl1: ['', Validators.nullValidator],
       firstCtrl2: ['', Validators.nullValidator],
@@ -56,21 +49,9 @@ export class UserquestionComponent implements OnInit {
     this.selectedScenario = this.activatedRoute.snapshot.params;
 
     this.shuffleInputs();
-    // alert(JSON.stringify(this.selectedScenario['selectedScenario']));
-
-    // if (this.selectedScenario['selectedScenario'] == '1') {
-    //   this.bindData(this.userData[0].questions[0].id);
-    // } else {
-    //   this.bindData(this.userDataScTwo[0].questions[0].id);
-    // }
-    // console.dir(this.inputsdata)
-    // console.log(this.userData.length);
-    // console.log(this.userData.length-1)
   }
 
   chnageButtonInput(newValue:any,item:any){
-    // alert(item.answers)
-    // alert(newValue)
 
   }
   ngAfterContentInit() {
@@ -163,32 +144,22 @@ export class UserquestionComponent implements OnInit {
     this.data[id] = $event.target.value;
     if($event.target.value==false)
     {
-      //  items.answers=
     }
-    // console.log(this.data);
   }
 
   edit(id: string,item:any,i:number) {
 
     this.isReadonly[id] = false;
-    // data[items.id]
     if(this.data[id]==''||this.data[id]==undefined)
     {
       this.data[id]=item.answers
     }
-    console.log('itemmmmmm',item)
 
-    // else{
-    //   console.dir(this.data[id])
-    // }
     const resa = this.editmode[item.id]== false || typeof this.editmode[item.id] == "undefined" ? true :false;
     this.editmode={...this.editmode, [item.id]:resa}    
-    console.log('hkhilhihjoiph',this.editmode)
 
   }
   onFocusPlaceholder(item:any){
-    console.log("its works")
-
     if(this.data[item.id]==''||this.data[item.id]==undefined)
     {
       this.data[item.id]=item.answers
@@ -236,15 +207,6 @@ export class UserquestionComponent implements OnInit {
   // ==== first=====
 
   next(item: any, index: number, inputtype: string) {
-    // if (this.inputsdata[index] == 'edit') {
-    //   this.data = this.editInput
-    // }
-
-    // alert(JSON.stringify(this.data));
-
-    // for (let i = 0; i < 3; i++) {
-    //   this.nextSubmit(item[i], i, this.data[item['id']]);
-    // }
 
     try {
       item.questions.forEach((element: any, ind: number) => {
@@ -278,11 +240,6 @@ export class UserquestionComponent implements OnInit {
             element['userAnswer'] = data;
           }
         });
-
-        // ==========
-        // databaseData[index].questions[0]['userAnswer'] = this.data;
-        // databaseData[index].questions[1]['userAnswer'] = this.data1;
-        // databaseData[index].questions[2]['userAnswer'] = this.data2;
       } else {
         databaseData.push(item);
       }
@@ -304,9 +261,6 @@ export class UserquestionComponent implements OnInit {
           this.userDataScTwo[index + 1].questions.forEach((element) => {
             this.bindData(element.id);
           });
-          // this.bindData(this.userDataScTwo[index].questions[0].id);
-          // this.bindData(this.userDataScTwo[index].questions[1].id);
-          // this.bindData(this.userDataScTwo[index].questions[2].id);
         }
       }
     } catch (e) {
@@ -314,7 +268,6 @@ export class UserquestionComponent implements OnInit {
       console.dir(e);
     }
 
-    // this.isReadonly = true;
   }
 
   submit(item: any, index: number) {
@@ -379,10 +332,11 @@ export class UserquestionComponent implements OnInit {
         partId = this.getParticipantId();
       }
 
-      var inputSeq = this.balancedLatinSquare(
-        this.inputs,
-        parseInt(partId.toString())
-      );
+      var inputSeq = this.inputs;
+      // var inputSeq = this.balancedLatinSquare(
+      //   this.inputs,
+      //   parseInt(partId.toString())
+      // );
       localStorage.setItem('inputSeq', JSON.stringify(inputSeq));
       return inputSeq;
     } else {
@@ -419,16 +373,12 @@ export class UserquestionComponent implements OnInit {
             'index : ' +
             inputtypeIndex
         );
-        // element['input'] = JSON.parse(seq!)[inputtypeIndex]?.toString();
       }
-      // else{
       element['input'] = JSON.parse(seq!)[inputtypeIndex]?.toString();
-      // }
       console.dir('seq : ' + JSON.parse(seq!));
     });
     console.dir(decodedData);
     this.exportAsXLSX(decodedData);
-    // var obj=
   }
 
   isSubtextVisible: any = {};
@@ -441,51 +391,7 @@ export class UserquestionComponent implements OnInit {
     this.excelService.exportAsExcelFile(data, 'sample');
   }
 
-  // zoom
 
-  // onClick(e: { clientY: any; clientX: any; }) {
-  //   console.log(e.clientY, e.clientX);
-  //   this.isZoomed = !this.isZoomed;
-  //   if (this.isZoomed) {
-  //     this.container.nativeElement.style.overflow = 'hidden';
-  //     this.img.nativeElement.style.width = '200%';
-  //     this.img.nativeElement.style.height = '200%';
-  //     this.img.nativeElement.style.cursor = 'zoom-out';
-  //     this.img.nativeElement.style.cursor = 'zoom-out';
-  //     this.img.nativeElement.style.left = `-${e.clientX}`;
-  //     this.img.nativeElement.style.top = `-${e.clientY}`;
-  //   } else {
-  //     this.container.nativeElement.style.overflow = 'hidden';
-  //     this.img.nativeElement.style.width = '100%';
-  //     this.img.nativeElement.style.cursor = 'zoom-in';
-  //   }
-  // }
-  // onMouseDown(e: { clientX: any; clientY: any; }) {
-  //   this.pos = {
-  //     // The current scroll
-  //     left: this.container.nativeElement.scrollLeft,
-  //     top: this.container.nativeElement.scrollTop,
-  //     // Get the current mouse position
-  //     x: e.clientX,
-  //     y: e.clientY,
-  //   };
-  // }
-
-  // mouseMoveHandler(e: { clientX: number; clientY: number; }) {
-  //   // How far the mouse has been moved
-  //   const dx = (e.clientX - this.pos.x) * 2;
-  //   const dy = (e.clientY - this.pos.y) * 3;
-
-  //   // Scroll the element
-  //   this.container.nativeElement.scrollTop = this.pos.top - dy;
-  //   this.container.nativeElement.scrollLeft = this.pos.left - dx;
-  // }
-
-  // onLeave() {
-  //   this.container.nativeElement.style.overflow = 'hidden';
-  //   this.img.nativeElement.style.transform = 'scale(1)';
-  //   this.img.nativeElement.style.cursor = 'zoom-in';
-  // }
 }
 
 interface IUser {
