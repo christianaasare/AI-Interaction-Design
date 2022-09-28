@@ -100,7 +100,7 @@ export class UserquestionComponent implements OnInit {
         });
       });
 
-      console.log('sc1Data :');
+      console.log('sce1Data :');
 
       var splicedArray: IUser2[] = this.splitToChunks(
         this.shuffle(tempList),
