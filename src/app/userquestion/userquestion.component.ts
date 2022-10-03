@@ -16,7 +16,7 @@ export class UserquestionComponent implements OnInit {
   editInput: any;
   selectedScenario!: any;
   data: any = {};
-  inputs = ['subtext', 'placeholder',	'text',	'edit',	'button'];
+  inputs = ['text', 'button',	'subtext',	'edit',	'placeholder'];
   firstFormGroup: FormGroup;
   isEditable = true;
   vard:any={};
